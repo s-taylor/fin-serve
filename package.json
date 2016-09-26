@@ -1,0 +1,22 @@
+{
+  "name": "fin-serve",
+  "version": "1.0.0",
+  "description": "Simple built-asset server.",
+  "main": "www.js",
+  "scripts": {
+    "start": "node www.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "static",
+    "server"
+  ],
+  "author": "Prismatik",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.6.0",
+    "eslint-config-prismatik": "^2.2.0",
+    "mocha": "^3.0.2"
+  }
+}
