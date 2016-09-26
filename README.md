@@ -4,11 +4,12 @@
 
 ### Purpose:
 
-Fin-Serve is a very simple http server. Written in node with zero dependencies, it aims to simply serve up compiled frontend assets without regards to routing.
+Fin-Serve is a very simple http server. Written in node with few deps, it aims to simply serve up compiled frontend assets without regards to routing.
+It will look in /dist for compiled assets. You should compile them before trying to run this.
 
 ### Setup:
 
-Since this only has dev-dependencies, there is no setup required besides node. `npm install` will install dev dependencies for development and testing purposes.
+`npm install` will install the two deps (serve-static and finalhandler), as well as the dev deps used for testing.
 
 ### Use:
 
