@@ -5,7 +5,8 @@
   "main": "www.js",
   "scripts": {
     "start": "node www.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test mocha && npm run lint",
+    "lint": "eslint ."
   },
   "keywords": [
     "node",
