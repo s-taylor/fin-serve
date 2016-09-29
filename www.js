@@ -10,7 +10,10 @@ const HOST_PORT = process.env.HOST_PORT || 8000;
 const serve = serveStatic(STATIC_DIR);
 
 const server = http.createServer((req, res) => {
-  req.url = '/';
+  if (!req.url.match(/\.(html|css$|js$|jpg|svg|txt|eot|ttf|woff)/g)) {
+    req.url = '/';
+  }
+
   serve(req, res, finalhandler(req, res));
 });
 
