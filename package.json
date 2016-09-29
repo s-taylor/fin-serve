@@ -10,6 +10,9 @@
     "lint": "eslint .",
     "coverage": "istanbul cover _mocha"
   },
+  "bin": {
+    "fin-serve": "www.js"
+  },
   "keywords": [
     "node",
     "static",
