@@ -1,6 +1,6 @@
 {
   "name": "fin-serve",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple built-asset server.",
   "main": "www.js",
   "repository": "git@github.com:Prismatik/fin-serve.git",
