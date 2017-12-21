@@ -5,7 +5,7 @@ const serveStatic = require('serve-static');
 const finalhandler = require('finalhandler');
 
 const STATIC_DIR = `${process.cwd()}/${process.env.STATIC_DIR || 'dist'}`;
-const HOST_PORT = process.env.PORT || 9000;
+const HOST_PORT = process.env.PORT || process.env.HOST_PORT || 9000;
 const META_API_LOCATION = process.env.API_URL || 'http://localhost:3005';
 const metaString = `<meta name="API_URL" content="${META_API_LOCATION}">`;
 
