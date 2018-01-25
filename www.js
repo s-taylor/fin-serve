@@ -4,10 +4,21 @@ const http = require('http');
 const serveStatic = require('serve-static');
 const finalhandler = require('finalhandler');
 
-const STATIC_DIR = `${process.cwd()}/${process.env.STATIC_DIR || 'dist'}`;
-const HOST_PORT = process.env.PORT || process.env.HOST_PORT || 9000;
-const META_API_LOCATION = process.env.API_URL || 'http://localhost:3005';
-const metaString = `<meta name="API_URL" content="${META_API_LOCATION}">`;
+const {
+  STATIC_DIR = 'dist',
+  HOST_PORT = process.env.PORT || 80,
+  API_URL = 'http://localhost:3005'
+} = process.env;
+
+const metaTags = Object.keys(process.env).reduce((env, name) =>
+  name.startsWith('META_TAG_') ? Object.assign(env, {
+    [name.replace(/^META_TAG_/, '')]: process.env[name]
+  }) : env
+, { API_URL });
+
+const metaString = Object.keys(metaTags).map(name =>
+  `<meta name="${name}" content="${metaTags[name]}">`
+).join('\n  ');
 
 const normalIndex = fs.readFileSync(`${STATIC_DIR}/index.html`, 'utf8');
 const metaAmmendedIndex = !normalIndex ? '' :
