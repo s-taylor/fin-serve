@@ -31,14 +31,24 @@ const metaAmmendedIndex = !normalIndex ? '' :
 const serve = serveStatic(STATIC_DIR);
 console.log('Serving your files now!');
 
+const ONE_MONTH = 2628000;
+const MD5_HASHED_RESOURCE = /-[a-f0-9]{20,32}\.(js|css|jpg|svg|ico|eot|ttf|woff|woff2)(\?|$)/i;
+const setCaching = (req, res) => {
+  if (MD5_HASHED_RESOURCE.test(req.url)) {
+    res.setHeader('Cache-Control', `public, max-age=${ONE_MONTH}`);
+  }
+};
+
+const ASSET_PATH_RE = /\.(html|css$|js$|json|webapp|cache|jpg|svg|png|ico|txt|eot|ttf|woff|woff2)/;
 const server = http.createServer((req, res) => {
   if (req.url === '/_health/ready' || req.url === '/_health/alive') {
     res.end('OK');
   }
-  if (!req.url.match(/\.(html|css$|js$|json|webapp|cache|jpg|svg|png|ico|txt|eot|ttf|woff)/g)) {
+  if (!ASSET_PATH_RE.test(req.url)) {
     req.url = '/';
     res.end(metaAmmendedIndex);
   } else {
+    setCaching(req, res);
     serve(req, res, finalhandler(req, res));
   }
 });
