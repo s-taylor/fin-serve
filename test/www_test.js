@@ -107,3 +107,19 @@ describe('/whatever', () => {
     });
   });
 });
+
+describe('caching headers', () => {
+  it('doesnt cache normal resources', (done) => {
+    http.get('http://localhost:9000/app.js', (res) => {
+      res.headers['cache-control'].must.eql('public, max-age=0');
+      done();
+    });
+  });
+
+  it('caches md5 hashed resources', (done) => {
+    http.get('http://localhost:9000/app-3378250e9d0b30cc15fa.js', (res) => {
+      res.headers['cache-control'].must.eql('public, max-age=2628000');
+      done();
+    });
+  });
+});
