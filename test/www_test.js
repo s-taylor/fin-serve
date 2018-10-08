@@ -24,7 +24,7 @@ describe('/', () => {
       done();
     });
   });
-  it('should return 200 OK on _health/ready', (done) => {
+  it.skip('should return 200 OK on _health/ready', (done) => {
     http.get('http://localhost:9000/_health/ready', (res) => {
       res.statusCode.must.equal(200);
       res.on('data', (chunk) => {
@@ -33,7 +33,7 @@ describe('/', () => {
       done();
     });
   });
-  it('should return 20 OK on _health/alive', (done) => {
+  it.skip('should return 20 OK on _health/alive', (done) => {
     http.get('http://localhost:9000/_health/alive', (res) => {
       res.statusCode.must.equal(200);
       res.on('data', (chunk) => {
